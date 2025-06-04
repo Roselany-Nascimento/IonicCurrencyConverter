@@ -1,0 +1,7 @@
+{
+  "name": "ioniccurrencyconverterapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

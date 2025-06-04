@@ -1,0 +1,57 @@
+ion-card {
+    --background : #222222;
+    --color : #ffffff;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+ion-menu-button {
+    --padding-bottom : 10px;
+}
+
+ion-card-title {
+    font-weight: bold;
+    font-size: 1.5em;
+    --color: #bbbbbb;    
+}
+
+ion-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%;
+}
+
+ion-button {
+    margin-top : 4vh;
+}
+
+ion-item {
+    display : flex;
+    max-width : 100%;
+    margin-top :  4vh;
+}
+
+.country-flag-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .flag-icon {
+    font-size: 2em;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+  }
+}

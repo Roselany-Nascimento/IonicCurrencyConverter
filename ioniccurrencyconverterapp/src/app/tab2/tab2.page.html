@@ -1,0 +1,31 @@
+<ion-menu side="end" contentId="historico-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Histórico de Conversões</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list *ngIf="historico">
+      <ion-item *ngFor="let item of historico">
+        <ion-label>
+          {{ item.data_hora_consulta | date: 'dd/MM/yyyy HH:mm:ss' }} - {{  }}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title slot="start">
+      IonicCurrencyConverter
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-menu-button size="large" id="historico-content"></ion-menu-button>
+      </ion-button>
+    </ion-buttons> 
+  </ion-toolbar>
+</ion-header>
