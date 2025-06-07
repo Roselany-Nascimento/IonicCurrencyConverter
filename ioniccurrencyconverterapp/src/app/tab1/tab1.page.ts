@@ -6,6 +6,7 @@ interface ConversaoResponse {
   moeda_base : string; 
   moeda_destino : string; 
   taxa : number;
+  valor_original : number;
   valor_convertido : number;
   data_hora_conversao : string;
 }
