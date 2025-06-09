@@ -1,15 +1,8 @@
 import { Component } from '@angular/core';
-import { PAISES } from '../models/paises.model';
+import { HttpClient } from '@angular/common/http';
+import { CurrencyService, ConversaoResponse } from '../services/currency.service';
 
 
-interface ConversaoResponse {
-  moeda_base : string; 
-  moeda_destino : string; 
-  taxa : number;
-  valor_original : number;
-  valor_convertido : number;
-  data_hora_conversao : string;
-}
 
 @Component({
   selector: 'app-tab1',
@@ -19,10 +12,9 @@ interface ConversaoResponse {
 })
 
 export class Tab1Page {
-  
-  constructor() {}
-  valor: number | null = null;
-  paises = PAISES;
+
+  constructor(private http: HttpClient) {}
+  valor: number = 0;
   paisSelecionado : any;
   paisDestino : any;
 
@@ -30,17 +22,26 @@ export class Tab1Page {
   historico : ConversaoResponse[] = [];
   conversao : ConversaoResponse | null = null;
   
+  currencyService: CurrencyService = new CurrencyService(this.http);
+
+
   converter() {
     console.log("Usando o valor: ", this.valor);
     console.log("Convertendo de: ", this.paisSelecionado);
     console.log("Convertendo para: ", this.paisDestino);
-    if (this.valor === null || this.paisSelecionado === undefined || this.paisDestino === undefined) {
+    this.currencyService.converter(this.paisSelecionado, this.paisDestino, this.valor).subscribe({
+      next: (data) => {
+        this.conversao = data;
+        this.historico.push(data);
+      },
+      error: (error) => {
+        console.error('Erro ao converter moeda:', error);
+      }
+    });
+  }
 
-      console.error("Por favor, preencha todos os campos.");
-      return; 
-    } else {
-  
-    }
 
+  listarPaises() {
+    return this.currencyService.getPaises();
   }
 }

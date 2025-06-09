@@ -31,7 +31,11 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss", "node_modules/flag-icon-css/css/flag-icons.min.css"],
+            "styles": [
+              "src/global.scss",
+              "src/theme/variables.scss",
+              "node_modules/flag-icons/css/flag-icons.min.css"
+            ],
             "scripts": []
           },
           "configurations": {

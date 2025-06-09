@@ -9,7 +9,7 @@
     <ion-list *ngIf="historico">
       <ion-item *ngFor="let item of historico">
         <ion-label>
-          {{ item.data_hora_consulta | date: 'dd/MM/yyyy HH:mm:ss' }} - {{ item.base_code }}
+          {{ item.data_hora_consulta | date: 'dd/MM/yyyy HH:mm:ss' }} - {{ item.moeda_base }}
         </ion-label>
       </ion-item>
     </ion-list>
@@ -37,14 +37,14 @@
     </ion-card-header>
     <ion-card-content>
       <ion-item class="seletor-pais-origem">
-          <ion-avatar slot="start" class="country-flag-icon">
-            <span *ngIf="paisSelecionado" class="flag-icon flag-icon-{{  paisSelecionado.codigoBandeira.toLowerCase()  }}"></span>
+          <ion-avatar slot="start" class="country-fi">
+            <span *ngIf="paisSelecionado" class="fi fi-{{  paisSelecionado.codigoBandeira.toLowerCase()  }}"></span>
           </ion-avatar>
 
 
           <ion-select [(ngModel)]="paisSelecionado" interface="popover" placeholder="Selecione um País de destino">
             <ion-select-option value="null" disabled>Selecione um País de destino</ion-select-option>
-            <ion-select-option *ngFor="let pais of paises" [value]="pais">{{ pais.nomePais }}</ion-select-option>
+            <ion-select-option *ngFor="let pais of listarPaises()" [value]="pais">{{ pais.nomePais }}</ion-select-option>
           </ion-select>
 
           <ion-text *ngIf="paisSelecionado" slot="end">{{ paisSelecionado.codigoMoeda }} </ion-text>
@@ -63,9 +63,10 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <ion-item *ngFor="let taxa of consulta.conversion_rates | keyvalue">
+        <ion-item *ngFor="let taxa of consulta.taxas | keyvalue">
           <ion-label>
-            {{ consulta.base_code }} para {{ taxa.key }}: {{ taxa.value }}
+            {{ consulta.moeda_base }} para {{ taxa.key }}: {{ taxa.value }}
+            <span *ngIf="buscarPaisPorMoeda(taxa.key) as pais" class="fi fi-{{ pais.codigoBandeira.toLowerCase() }}"></span>
           </ion-label>
         </ion-item>
       </ion-list>
